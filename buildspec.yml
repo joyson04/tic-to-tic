@@ -1,0 +1,34 @@
+version: "0.2"
+
+env:
+  variables:
+    - name: SNYK_TOKEN
+
+phases:
+  install:
+    runtime-versions: 
+      nodejs: v22.11.0
+    commands:
+      - echo "Install dependencies"
+      - npm install 
+      - npm install -g snyk
+      - echo "Install success"
+    pre_build:
+      commands:
+        - snyk config set token=$SNYK_TOKEN
+        - echo "auth config"
+    build:
+      commands:
+        - snyk test
+        - echo "test completed"
+        - snyk test code 
+        - snyk code test --severity-threshold=high
+        - echo "test code"
+        - snyk test --dev 
+        - echo "testing dependencies success""
+        - echo "build successfully"
+    post_build:
+      commands:
+        - snyk monitor
+        - echo "monitor success""
+        - echo "Post_build success"
