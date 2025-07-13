@@ -2,7 +2,7 @@ version: "0.2"
 
 env:
   variables:
-    - name: SNYK_TOKEN
+    - name: "test"
 
 phases:
   install:
@@ -15,7 +15,7 @@ phases:
       - echo "Install success"
     pre_build:
       commands:
-        - snyk config set token=$SNYK_TOKEN
+        - snyk config set token="$SNYK_TOKEN"
         - echo "auth config"
     build:
       commands:
@@ -26,7 +26,7 @@ phases:
         - echo "test code"
         - snyk test --dev 
         - echo "testing dependencies success""
-        - echo "build successfully"
+        - echo "build successfully $name"
     post_build:
       commands:
         - snyk monitor
