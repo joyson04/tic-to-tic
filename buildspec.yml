@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+  variables:
+    NAME: "test"
+
 phases:
   install:
     runtime-versions:
@@ -21,7 +25,7 @@ phases:
       - snyk code test --severity-threshold=high
       - echo "Scanning with --dev dependencies"
       - snyk test --dev
-      - echo "Build completed"
+      - echo "Build completed $NAME"
   post_build:
     commands:
       - snyk monitor
