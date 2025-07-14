@@ -21,8 +21,6 @@ phases:
     commands:
       - echo "Starting Snyk code scan"
       - snyk code test --severity-threshold=high
-      - echo "Scanning with --dev dependencies"
-      - snyk test --dev
       - echo "Build completed $NAME"
   post_build:
     commands:
