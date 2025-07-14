@@ -27,3 +27,4 @@ phases:
       - snyk monitor
       - echo "Snyk monitoring initialized"
       - echo "Post-build completed"
+      - npm uninstall -g snyk
