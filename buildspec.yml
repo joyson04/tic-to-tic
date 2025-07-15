@@ -19,6 +19,8 @@ phases:
       - echo "Snyk authentication configured"
   build:
     commands:
+      - echo "Test Dev dependencies"
+      - snyk test --dev
       - echo "Starting Snyk code scan"
       - snyk code test --severity-threshold=high
       - echo "Build completed $NAME"
