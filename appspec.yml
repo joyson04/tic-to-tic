@@ -1,0 +1,35 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ubuntu/my-app1
+permissions:
+  - object: /home/ubuntu/my-app1
+    pattern: '**'
+    mode: '0755'
+    owner: root
+    group: root
+    type:
+      - file
+      - directory
+
+
+hooks:
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 300
+      runas: root
+
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 300
+      runas: root
+
+  # ApplicationStart:
+  #   - location: scripts/start_server.sh
+  #     timeout: 300
+  #     runas: root
+
+
+
